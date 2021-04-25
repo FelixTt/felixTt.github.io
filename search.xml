@@ -1,12 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2021/04/24/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>node + es6 注意点</title>
+    <url>/2021/04/24/node%20+%20es6%E6%B3%A8%E6%84%8F%E7%82%B9/</url>
+    <content><![CDATA[<h3 id="filter-map-reduce"><a href="#filter-map-reduce" class="headerlink" title="filter/map/reduce"></a>filter/map/reduce</h3><h3 id="v-for-加入-key-原因"><a href="#v-for-加入-key-原因" class="headerlink" title="v-for 加入 key 原因"></a>v-for 加入 key 原因</h3><h3 id="ES6规范"><a href="#ES6规范" class="headerlink" title="ES6规范"></a>ES6规范</h3><ul>
+<li>使用 export default 和 export 向外暴露成员：</li>
+<li>使用 import 模块名称 from ‘模块标识符’        import  ‘表示路径’</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">	name: <span class="string">&#x27;zs&#x27;</span>,</span><br><span class="line">	age: <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">import</span> mm <span class="keyword">from</span> <span class="string">&#x27;./test.js&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(mm)</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+
+<p><strong>注意：</strong><br>1、export default 向外暴露的成员，可以使用任意变量来接受<br>2、在一个模块中，只允许 export default 向外暴露一次<br>3、在一个模块中，可以同时使用 export default 向外暴露成员，也可以使用 export 向外暴露<br>4、使用 export 向外暴露成员，可以向外暴露多个成员，但是只能够使用 { } 的形式来接收，叫做【按需导出】，有些变量不需要的时候，可以不在{ } 中定义<br>5、使用 export 导出的成员，必须按照导出的时候的名称，来使用 { } 按需接受。<br>6、使用 export 导出的成员，如果想换个名称来接收，可以使用 as 来起别名</p>
+<h3 id="在node中"><a href="#在node中" class="headerlink" title="在node中"></a>在node中</h3><p>使用 var 名称 = require(‘模块标识符’)<br>module.exports 和 exports 来向外暴露成员</p>
+<!--more-->
+
+
+<h2 id="区别（重点）"><a href="#区别（重点）" class="headerlink" title="区别（重点）***"></a>区别（重点）***</h2><blockquote>
+<p>在 node 中，使用 exports 和 module.exports 来导出成员， 使用require来导入</p>
+<p>在 ES6 中，使用 export 和 export default 来导出成员，使用 import 来导入</p>
+</blockquote>
+<h3 id="node模块中的导入导出"><a href="#node模块中的导入导出" class="headerlink" title="node模块中的导入导出"></a>node模块中的导入导出</h3><p><code>Node</code>里面的模块系统遵循的是<code>CommonJS</code>规范。</p>
+<blockquote>
+<p> <code>CommonJS</code>定义的模块分为: 模块标识(<code>module</code>)、模块定义(<code>exports</code>) 、模块引用(<code>require</code>)</p>
+</blockquote>
+<blockquote>
+<p> 在 node 中，每个模块内部都有一个自己的 module 对象，该 module 对象中，有一个成员叫：exports， 也是一个对象。</p>
+<p>也就是说，如果你需要对外导出成员，只需要把导出的成员挂载到 module.exports 中</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// foo.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//var moudule = &#123;</span></span><br><span class="line"><span class="comment">//	exports: &#123;</span></span><br><span class="line"><span class="comment">//		foo: &quot;bar&quot;</span></span><br><span class="line"><span class="comment">//		add: function</span></span><br><span class="line"><span class="comment">//	&#125;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports.foo = <span class="string">&#x27;bar&#x27;</span></span><br><span class="line"><span class="built_in">module</span>.export.add = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x +y;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">var</span> fooExports = <span class="built_in">require</span>(./foo)</span><br><span class="line"><span class="built_in">console</span>.log(fooExports)		<span class="comment">// &#123;foo: &#x27;bar&#x27;, add: [function]&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>默认在代码最后一句，<code>return module.exports</code> </p>
+<p>谁来 require 我，谁就得到 module.exports</p>
+<h4 id="exports-和-module-exports"><a href="#exports-和-module-exports" class="headerlink" title="exports 和 module.exports"></a>exports 和 module.exports</h4><p>node为了简化代码，专门提供了一个变量：exports = module.exports</p>
+<blockquote>
+<p> exports = module.exports = {};</p>
+</blockquote>
+<p>现在就可以这么来书写：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exports</span>.foo = <span class="string">&#x27;bar&#x27;</span></span><br><span class="line"><span class="built_in">exports</span>.add = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p><strong>导出对象最终以<code>module.exports</code>为准</strong></p>
+</blockquote>
+<p>然后呢，为了避免糊涂，尽量都用 <code>module.exports</code> 导出，然后用<code>require</code>导入。</p>
+<h3 id="ES6中的模块导出导入"><a href="#ES6中的模块导出导入" class="headerlink" title="ES6中的模块导出导入"></a>ES6中的模块导出导入</h3><p>说实话，在es中的模块，就非常清晰了。不过也有一些细节的东西需要搞清楚。<br>比如 <code>export</code> 和 <code>export default</code>，还有 导入的时候，<code>import a from ..</code>,<code>import &#123;a&#125; from ..</code>，总之也有点乱，那么下面我们就开始把它们捋清楚吧。</p>
+<h4 id="export-和-export-default"><a href="#export-和-export-default" class="headerlink" title="export 和 export default"></a>export 和 export default</h4><p>首先我们讲这两个导出，下面我们讲讲它们的区别</p>
+<ol>
+<li>export与export default均可用于导出常量、函数、文件、模块等</li>
+<li>在一个文件或模块中，export、import可以有多个，export default仅有一个</li>
+<li>通过export方式导出，在导入时要加{ }，export default则不需要</li>
+<li>export能直接导出变量表达式，export default不行。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span></span><br><span class="line"><span class="comment">//导出变量</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="string">&#x27;100&#x27;</span>;  </span><br><span class="line"> </span><br><span class="line"> <span class="comment">//导出方法</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> dogSay = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;wang wang&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> <span class="comment">//导出方法第二种</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">catSay</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">&#x27;miao miao&#x27;</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123; catSay &#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//export default导出</span></span><br><span class="line"><span class="keyword">const</span> m = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> m; </span><br><span class="line"><span class="comment">//export defult const m = 100;// 这里不能写这种格式。</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>web前端</category>
+      </categories>
+      <tags>
+        <tag>es6</tag>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>手写 JS</title>
     <url>/2021/04/24/%E6%89%8B%E5%86%99JS/</url>
     <content><![CDATA[<h5 id="1、手写bind函数"><a href="#1、手写bind函数" class="headerlink" title="1、手写bind函数"></a>1、手写bind函数</h5><p>slice() 方法返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括end）。原始数组不会被改变。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 将参数解析成数组, arguments 是一个列表</span></span><br><span class="line">    <span class="keyword">const</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取 this (取出数组第一项，数组剩余的就是要传递的参数)</span></span><br><span class="line">    <span class="keyword">const</span> t = args.shift()</span><br><span class="line">    <span class="keyword">const</span> self = <span class="built_in">this</span> <span class="comment">// 当前函数</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回一个函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 执行原函数，并返回结果</span></span><br><span class="line">        <span class="keyword">return</span> self.apply(t, args)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(a, b)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    name: <span class="string">&#x27;haha&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> fn1 = fn.bind1(obj, <span class="string">&quot;aaa&quot;</span>, <span class="string">&quot;ccc&quot;</span>)</span><br><span class="line">fn1()</span><br></pre></td></tr></table></figure>
-
 <span id="more"></span>
+
 
 <h5 id="手写-call-函数"><a href="#手写-call-函数" class="headerlink" title="手写 call 函数"></a>手写 call 函数</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 手写 call</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.call2 = <span class="function"><span class="keyword">function</span>(<span class="params">content = <span class="built_in">window</span></span>) </span>&#123;</span><br><span class="line">    content.fn = <span class="built_in">this</span>;</span><br><span class="line">    <span class="keyword">let</span> args = [...arguments].slice(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> result = content.fn(...args);</span><br><span class="line">    <span class="keyword">delete</span> content.fn;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> foo = &#123;</span><br><span class="line">    value: <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name)</span><br><span class="line">    <span class="built_in">console</span>.log(age)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.value);</span><br><span class="line">&#125;</span><br><span class="line">bar.call2(foo, <span class="string">&#x27;black&#x27;</span>, <span class="string">&#x27;18&#x27;</span>) <span class="comment">// black 18 1</span></span><br></pre></td></tr></table></figure>
 
@@ -68,90 +156,6 @@
       </categories>
       <tags>
         <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/04/24/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<span id="more"></span>
-
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>node + es6 注意点</title>
-    <url>/2021/04/24/node%20+%20es6%E6%B3%A8%E6%84%8F%E7%82%B9/</url>
-    <content><![CDATA[<h3 id="filter-map-reduce"><a href="#filter-map-reduce" class="headerlink" title="filter/map/reduce"></a>filter/map/reduce</h3><h3 id="v-for-加入-key-原因"><a href="#v-for-加入-key-原因" class="headerlink" title="v-for 加入 key 原因"></a>v-for 加入 key 原因</h3><h3 id="ES6规范"><a href="#ES6规范" class="headerlink" title="ES6规范"></a>ES6规范</h3><ul>
-<li>使用 export default 和 export 向外暴露成员：</li>
-<li>使用 import 模块名称 from ‘模块标识符’        import  ‘表示路径’</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">	name: <span class="string">&#x27;zs&#x27;</span>,</span><br><span class="line">	age: <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">import</span> mm <span class="keyword">from</span> <span class="string">&#x27;./test.js&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(mm)</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>注意：</strong><br>1、export default 向外暴露的成员，可以使用任意变量来接受<br>2、在一个模块中，只允许 export default 向外暴露一次<br>3、在一个模块中，可以同时使用 export default 向外暴露成员，也可以使用 export 向外暴露<br>4、使用 export 向外暴露成员，可以向外暴露多个成员，但是只能够使用 { } 的形式来接收，叫做【按需导出】，有些变量不需要的时候，可以不在{ } 中定义<br>5、使用 export 导出的成员，必须按照导出的时候的名称，来使用 { } 按需接受。<br>6、使用 export 导出的成员，如果想换个名称来接收，可以使用 as 来起别名</p>
-<h3 id="在node中"><a href="#在node中" class="headerlink" title="在node中"></a>在node中</h3><p>使用 var 名称 = require(‘模块标识符’)<br>module.exports 和 exports 来向外暴露成员</p>
-<h2 id="区别（重点）"><a href="#区别（重点）" class="headerlink" title="区别（重点）***"></a>区别（重点）***</h2><blockquote>
-<p>在 node 中，使用 exports 和 module.exports 来导出成员， 使用require来导入</p>
-<p>在 ES6 中，使用 export 和 export default 来导出成员，使用 import 来导入</p>
-</blockquote>
-<h3 id="node模块中的导入导出"><a href="#node模块中的导入导出" class="headerlink" title="node模块中的导入导出"></a>node模块中的导入导出</h3><p><code>Node</code>里面的模块系统遵循的是<code>CommonJS</code>规范。</p>
-<blockquote>
-<p> <code>CommonJS</code>定义的模块分为: 模块标识(<code>module</code>)、模块定义(<code>exports</code>) 、模块引用(<code>require</code>)</p>
-</blockquote>
-<blockquote>
-<p> 在 node 中，每个模块内部都有一个自己的 module 对象，该 module 对象中，有一个成员叫：exports， 也是一个对象。</p>
-<p>也就是说，如果你需要对外导出成员，只需要把导出的成员挂载到 module.exports 中</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// foo.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//var moudule = &#123;</span></span><br><span class="line"><span class="comment">//	exports: &#123;</span></span><br><span class="line"><span class="comment">//		foo: &quot;bar&quot;</span></span><br><span class="line"><span class="comment">//		add: function</span></span><br><span class="line"><span class="comment">//	&#125;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports.foo = <span class="string">&#x27;bar&#x27;</span></span><br><span class="line"><span class="built_in">module</span>.export.add = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x +y;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">var</span> fooExports = <span class="built_in">require</span>(./foo)</span><br><span class="line"><span class="built_in">console</span>.log(fooExports)		<span class="comment">// &#123;foo: &#x27;bar&#x27;, add: [function]&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>默认在代码最后一句，<code>return module.exports</code> </p>
-<p>谁来 require 我，谁就得到 module.exports</p>
-<h4 id="exports-和-module-exports"><a href="#exports-和-module-exports" class="headerlink" title="exports 和 module.exports"></a>exports 和 module.exports</h4><p>node为了简化代码，专门提供了一个变量：exports = module.exports</p>
-<blockquote>
-<p> exports = module.exports = {};</p>
-</blockquote>
-<p>现在就可以这么来书写：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exports</span>.foo = <span class="string">&#x27;bar&#x27;</span></span><br><span class="line"><span class="built_in">exports</span>.add = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p><strong>导出对象最终以<code>module.exports</code>为准</strong></p>
-</blockquote>
-<p>然后呢，为了避免糊涂，尽量都用 <code>module.exports</code> 导出，然后用<code>require</code>导入。</p>
-<h3 id="ES6中的模块导出导入"><a href="#ES6中的模块导出导入" class="headerlink" title="ES6中的模块导出导入"></a>ES6中的模块导出导入</h3><p>说实话，在es中的模块，就非常清晰了。不过也有一些细节的东西需要搞清楚。<br>比如 <code>export</code> 和 <code>export default</code>，还有 导入的时候，<code>import a from ..</code>,<code>import &#123;a&#125; from ..</code>，总之也有点乱，那么下面我们就开始把它们捋清楚吧。</p>
-<h4 id="export-和-export-default"><a href="#export-和-export-default" class="headerlink" title="export 和 export default"></a>export 和 export default</h4><p>首先我们讲这两个导出，下面我们讲讲它们的区别</p>
-<ol>
-<li>export与export default均可用于导出常量、函数、文件、模块等</li>
-<li>在一个文件或模块中，export、import可以有多个，export default仅有一个</li>
-<li>通过export方式导出，在导入时要加{ }，export default则不需要</li>
-<li>export能直接导出变量表达式，export default不行。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span></span><br><span class="line"><span class="comment">//导出变量</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="string">&#x27;100&#x27;</span>;  </span><br><span class="line"> </span><br><span class="line"> <span class="comment">//导出方法</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> dogSay = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;wang wang&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> <span class="comment">//导出方法第二种</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">catSay</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">&#x27;miao miao&#x27;</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123; catSay &#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//export default导出</span></span><br><span class="line"><span class="keyword">const</span> m = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> m; </span><br><span class="line"><span class="comment">//export defult const m = 100;// 这里不能写这种格式。</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>web前端</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>es6</tag>
-        <tag>node</tag>
       </tags>
   </entry>
 </search>

@@ -79,10 +79,12 @@
 
 
 
+<meta name="description" content="奋斗不息">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="iSimple">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="iSimple">
+<meta property="og:description" content="奋斗不息">
 <meta property="og:locale">
 <meta property="article:author" content="iSimple">
 <meta name="twitter:card" content="summary">
@@ -121,7 +123,7 @@
 
 
 
-  <title>Hexo</title>
+  <title>iSimple</title>
   
 
 
@@ -152,12 +154,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">iSimple</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">奋斗不息</p>
       
   </div>
 
@@ -298,11 +300,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="iSimple">
     </span>
 
     
@@ -385,186 +387,14 @@
 
       
         
-          
-            <h3 id="filter-map-reduce"><a href="#filter-map-reduce" class="headerlink" title="filter/map/reduce"></a>filter/map/reduce</h3><h3 id="v-for-加入-key-原因"><a href="#v-for-加入-key-原因" class="headerlink" title="v-for 加入 key 原因"></a>v-for 加入 key 原因</h3><h3 id="ES6规范"><a href="#ES6规范" class="headerlink" title="ES6规范"></a>ES6规范</h3><ul>
+          <h3 id="filter-map-reduce"><a href="#filter-map-reduce" class="headerlink" title="filter/map/reduce"></a>filter/map/reduce</h3><h3 id="v-for-加入-key-原因"><a href="#v-for-加入-key-原因" class="headerlink" title="v-for 加入 key 原因"></a>v-for 加入 key 原因</h3><h3 id="ES6规范"><a href="#ES6规范" class="headerlink" title="ES6规范"></a>ES6规范</h3><ul>
 <li>使用 export default 和 export 向外暴露成员：</li>
 <li>使用 import 模块名称 from ‘模块标识符’        import  ‘表示路径’</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">	name: <span class="string">&#x27;zs&#x27;</span>,</span><br><span class="line">	age: <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">import</span> mm <span class="keyword">from</span> <span class="string">&#x27;./test.js&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(mm)</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>注意：</strong><br>1、export default 向外暴露的成员，可以使用任意变量来接受<br>2、在一个模块中，只允许 export default 向外暴露一次<br>3、在一个模块中，可以同时使用 export default 向外暴露成员，也可以使用 export 向外暴露<br>4、使用 export 向外暴露成员，可以向外暴露多个成员，但是只能够使用 { } 的形式来接收，叫做【按需导出】，有些变量不需要的时候，可以不在{ } 中定义<br>5、使用 export 导出的成员，必须按照导出的时候的名称，来使用 { } 按需接受。<br>6、使用 export 导出的成员，如果想换个名称来接收，可以使用 as 来起别名</p>
-<h3 id="在node中"><a href="#在node中" class="headerlink" title="在node中"></a>在node中</h3><p>使用 var 名称 = require(‘模块标识符’)<br>module.exports 和 exports 来向外暴露成员</p>
-<h2 id="区别（重点）"><a href="#区别（重点）" class="headerlink" title="区别（重点）***"></a>区别（重点）***</h2><blockquote>
-<p>在 node 中，使用 exports 和 module.exports 来导出成员， 使用require来导入</p>
-<p>在 ES6 中，使用 export 和 export default 来导出成员，使用 import 来导入</p>
-</blockquote>
-<h3 id="node模块中的导入导出"><a href="#node模块中的导入导出" class="headerlink" title="node模块中的导入导出"></a>node模块中的导入导出</h3><p><code>Node</code>里面的模块系统遵循的是<code>CommonJS</code>规范。</p>
-<blockquote>
-<p> <code>CommonJS</code>定义的模块分为: 模块标识(<code>module</code>)、模块定义(<code>exports</code>) 、模块引用(<code>require</code>)</p>
-</blockquote>
-<blockquote>
-<p> 在 node 中，每个模块内部都有一个自己的 module 对象，该 module 对象中，有一个成员叫：exports， 也是一个对象。</p>
-<p>也就是说，如果你需要对外导出成员，只需要把导出的成员挂载到 module.exports 中</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// foo.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//var moudule = &#123;</span></span><br><span class="line"><span class="comment">//	exports: &#123;</span></span><br><span class="line"><span class="comment">//		foo: &quot;bar&quot;</span></span><br><span class="line"><span class="comment">//		add: function</span></span><br><span class="line"><span class="comment">//	&#125;</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports.foo = <span class="string">&#x27;bar&#x27;</span></span><br><span class="line"><span class="built_in">module</span>.export.add = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x +y;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">var</span> fooExports = <span class="built_in">require</span>(./foo)</span><br><span class="line"><span class="built_in">console</span>.log(fooExports)		<span class="comment">// &#123;foo: &#x27;bar&#x27;, add: [function]&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>默认在代码最后一句，<code>return module.exports</code> </p>
-<p>谁来 require 我，谁就得到 module.exports</p>
-<h4 id="exports-和-module-exports"><a href="#exports-和-module-exports" class="headerlink" title="exports 和 module.exports"></a>exports 和 module.exports</h4><p>node为了简化代码，专门提供了一个变量：exports = module.exports</p>
-<blockquote>
-<p> exports = module.exports = {};</p>
-</blockquote>
-<p>现在就可以这么来书写：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exports</span>.foo = <span class="string">&#x27;bar&#x27;</span></span><br><span class="line"><span class="built_in">exports</span>.add = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p><strong>导出对象最终以<code>module.exports</code>为准</strong></p>
-</blockquote>
-<p>然后呢，为了避免糊涂，尽量都用 <code>module.exports</code> 导出，然后用<code>require</code>导入。</p>
-<h3 id="ES6中的模块导出导入"><a href="#ES6中的模块导出导入" class="headerlink" title="ES6中的模块导出导入"></a>ES6中的模块导出导入</h3><p>说实话，在es中的模块，就非常清晰了。不过也有一些细节的东西需要搞清楚。<br>比如 <code>export</code> 和 <code>export default</code>，还有 导入的时候，<code>import a from ..</code>,<code>import &#123;a&#125; from ..</code>，总之也有点乱，那么下面我们就开始把它们捋清楚吧。</p>
-<h4 id="export-和-export-default"><a href="#export-和-export-default" class="headerlink" title="export 和 export default"></a>export 和 export default</h4><p>首先我们讲这两个导出，下面我们讲讲它们的区别</p>
-<ol>
-<li>export与export default均可用于导出常量、函数、文件、模块等</li>
-<li>在一个文件或模块中，export、import可以有多个，export default仅有一个</li>
-<li>通过export方式导出，在导入时要加{ }，export default则不需要</li>
-<li>export能直接导出变量表达式，export default不行。</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span></span><br><span class="line"><span class="comment">//导出变量</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> a = <span class="string">&#x27;100&#x27;</span>;  </span><br><span class="line"> </span><br><span class="line"> <span class="comment">//导出方法</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> dogSay = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;wang wang&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> <span class="comment">//导出方法第二种</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">catSay</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">&#x27;miao miao&#x27;</span>); </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123; catSay &#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//export default导出</span></span><br><span class="line"><span class="keyword">const</span> m = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> m; </span><br><span class="line"><span class="comment">//export defult const m = 100;// 这里不能写这种格式。</span></span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/24/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/04/24/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-24T15:38:29+08:00">
-                2021-04-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/04/24/hello-world/#more" rel="contents">
+            <a class="btn" href="/2021/04/24/node%20+%20es6%E6%B3%A8%E6%84%8F%E7%82%B9/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -620,11 +450,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="iSimple">
     </span>
 
     
@@ -646,7 +476,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-24T14:47:40+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-24T14:47:50+08:00">
                 2021-04-24
               </time>
             
@@ -704,6 +534,30 @@
 
       
       
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox"
+                 target="_blank" href="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-0.jpg" rel="gallery_cknwjw49s0005isux27yqe466 noopener"
+                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-0.jpg" itemprop="contentUrl"/>
+              </a>
+            
+          
+            
+              <a class="post-gallery-img fancybox"
+                 target="_blank" href="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg" rel="gallery_cknwjw49s0005isux27yqe466 noopener"
+                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg" itemprop="contentUrl"/>
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
 
       
         
@@ -712,6 +566,134 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/04/24/%E6%89%8B%E5%86%99JS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/24/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iSimple">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/04/24/hello-world/" itemprop="url">Hello World</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-24T12:47:40+08:00">
+                2021-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/04/24/hello-world/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -783,6 +765,10 @@
       <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
             
               <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
